@@ -1,7 +1,10 @@
 package com.zhy_9.stoexpress;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.zhy_9.stoexpress.model.ConstansValues;
 import com.zhy_9.stoexpress.model.ListDialogModel;
@@ -9,11 +12,8 @@ import com.zhy_9.stoexpress.view.ListDialog;
 import com.zhy_9.stoexpress.view.TitleView;
 import com.zhy_9.stoexpress.view.TitleView.RightBtnCallBack;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements OnClickListener{
 	
@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 					data.add(model);
 				}
 				ListDialog dialog = new ListDialog(MainActivity.this, data);
+				dialog.setTitle("选择问题类型");
 				dialog.show();
 			}
 		});

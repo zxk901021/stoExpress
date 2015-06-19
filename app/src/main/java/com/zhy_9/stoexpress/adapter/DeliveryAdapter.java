@@ -80,6 +80,7 @@ public class DeliveryAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				ListDialog dialog = new ListDialog(context, model);
+				dialog.setTitle("—°«© ’»À");
 				dialog.show();
 			}
 		});
