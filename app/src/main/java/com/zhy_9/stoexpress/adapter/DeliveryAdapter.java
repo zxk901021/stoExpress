@@ -1,26 +1,33 @@
 package com.zhy_9.stoexpress.adapter;
 
-import java.util.List;
-
-import com.zhy_9.stoexpress.R;
-import com.zhy_9.stoexpress.model.ScanRecord;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.zhy_9.stoexpress.R;
+import com.zhy_9.stoexpress.model.ListDialogModel;
+import com.zhy_9.stoexpress.model.ScanRecord;
+import com.zhy_9.stoexpress.view.ListDialog;
+
+import java.util.List;
 
 public class DeliveryAdapter extends BaseAdapter {
 	
 	
 	private List<ScanRecord> data;
 	private LayoutInflater inflater;
+	private Context context;
+	private List<ListDialogModel> model;
 	
-	public DeliveryAdapter(Context context, List<ScanRecord> data) {
+	public DeliveryAdapter(Context context, List<ScanRecord> data, List<ListDialogModel> model) {
 		this.data = data;
+		this.context = context;
+		this.model = model;
 		inflater = LayoutInflater.from(context);
 	}
 
@@ -67,6 +74,15 @@ public class DeliveryAdapter extends BaseAdapter {
 		holder.status.setText(data.get(position).getExpressStatus());
 		holder.courier.setText(data.get(position).getCourier());
 		
+		
+		holder.courier.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ListDialog dialog = new ListDialog(context, model);
+				dialog.show();
+			}
+		});
 		
 		return convertView;
 	}

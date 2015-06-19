@@ -11,8 +11,6 @@ import com.zhy_9.stoexpress.view.TitleView.RightBtnCallBack;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -23,7 +21,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
@@ -356,7 +353,7 @@ public abstract class IndicatorFragmentActivity extends FragmentActivity
 			return fragment;
 		}
 
-		public static final Parcelable.Creator<TabInfo> CREATOR = new Parcelable.Creator<TabInfo>() {
+		public static final Creator<TabInfo> CREATOR = new Creator<TabInfo>() {
 			public TabInfo createFromParcel(Parcel p) {
 				return new TabInfo(p);
 			}
