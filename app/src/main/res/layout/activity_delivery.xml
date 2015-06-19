@@ -56,7 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/delivery_list_title"
         android:layout_above="@+id/delivery_bottom_layout"
-        android:scrollbars="none" >
+        android:scrollbars="none"
+        android:divider="@color/grey_line"
+        android:dividerHeight="5dp" >
     </ListView>
 
     <LinearLayout
