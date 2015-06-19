@@ -29,6 +29,7 @@
     <string name="paijianshaomian">派件扫描</string>
     <string name="qiaoshoushaomiao">签收扫描</string>
     <string name="saomiaotongji">扫描统计</string>
+    <string name="wentijian">问题件</string>
     <string name="title_activity_delivery">DeliveryActivity</string>
     <string name="title_activity_fragments">FragmentsActivity</string>
     <string name="title_activity_scan_record">ScanRecordActivity</string>

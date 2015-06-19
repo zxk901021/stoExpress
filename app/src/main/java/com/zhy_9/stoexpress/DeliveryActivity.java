@@ -36,15 +36,15 @@ public class DeliveryActivity extends BaseActivity {
 		String titleStr = "";
 		switch (flag) {
 		case 1:
-			titleStr = "派件扫描";
+			titleStr = getResources().getString(R.string.paijianshaomian);
 			return titleStr;
 
 		case 2:
-			titleStr = "问题件";
+			titleStr = getResources().getString(R.string.wentijian);
 			return titleStr;
 			
 		case 3:
-			titleStr = "签收扫描";
+			titleStr = getResources().getString(R.string.qiaoshoushaomiao);
 			return titleStr;
 		}
 		return titleStr;
