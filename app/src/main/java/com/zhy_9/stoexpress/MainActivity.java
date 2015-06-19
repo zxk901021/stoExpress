@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 				List<ListDialogModel> data = new ArrayList<ListDialogModel>();
 				for (int i = 0; i < 20; i++) {
 					ListDialogModel model = new ListDialogModel();
-					model.setListContent("æµ‹è¯•æ•°æ®" + i);
+					model.setListContent("²âÊÔÊý¾Ý" + i);
 //					model.setIsChosen(i%2);
 					model.setIsVisiable(1);
 					data.add(model);
