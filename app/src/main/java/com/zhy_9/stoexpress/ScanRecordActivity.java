@@ -1,16 +1,15 @@
 package com.zhy_9.stoexpress;
 
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 
 import com.zhy_9.stoexpress.adapter.TitleAdapter;
 import com.zhy_9.stoexpress.fragment.ListFragment;
 import com.zhy_9.stoexpress.view.TitleView;
 import com.zhy_9.stoexpress.view.TitleView.RightBtnCallBack;
 
-import android.app.Fragment;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
+import java.util.List;
 
 public class ScanRecordActivity extends IndicatorFragmentActivity {
 
@@ -26,9 +25,9 @@ public class ScanRecordActivity extends IndicatorFragmentActivity {
 		int flag = intent.getIntExtra("tag", 0);
 		Log.e("flag", flag + "");
 		if (flag == 0) {
-			this.setTitle("扫描记录");
+			this.setTitle(getResources().getString(R.string.paijianshaomian));
 			this.setBackgroundColor(getResources().getColor(R.color.yellow));
-			this.setRightText("扫描统计");
+			this.setRightText(getResources().getString(R.string.qiaoshoushaomiao));
 			this.setRightTextGone(false);
 			this.setRightTextListener(new RightBtnCallBack() {
 				
@@ -40,7 +39,7 @@ public class ScanRecordActivity extends IndicatorFragmentActivity {
 				}
 			});
 		}else {
-			this.setTitle("扫描统计");
+			this.setTitle(getResources().getString(R.string.saomiaotongji));
 			this.setBackgroundColor(getResources().getColor(R.color.yellow));
 			this.setRightTextGone(true);
 		}
@@ -50,11 +49,11 @@ public class ScanRecordActivity extends IndicatorFragmentActivity {
 
 	@Override
 	protected int supplyTabs(List<TabInfo> tabs) {
-		tabs.add(new TabInfo(0, "收件", ListFragment.class));
-		tabs.add(new TabInfo(1, "发件", ListFragment.class));
-		tabs.add(new TabInfo(2, "派件", ListFragment.class));
-		tabs.add(new TabInfo(3, "到件", ListFragment.class));
-		tabs.add(new TabInfo(4, "签收件", ListFragment.class));
+		tabs.add(new TabInfo(0, getResources().getString(R.string.shoujian), ListFragment.class));
+		tabs.add(new TabInfo(1, getResources().getString(R.string.fajian), ListFragment.class));
+		tabs.add(new TabInfo(2, getResources().getString(R.string.paijian), ListFragment.class));
+		tabs.add(new TabInfo(3, getResources().getString(R.string.daojian), ListFragment.class));
+		tabs.add(new TabInfo(4, getResources().getString(R.string.qianshoujian), ListFragment.class));
 		
 		return 0;
 	}

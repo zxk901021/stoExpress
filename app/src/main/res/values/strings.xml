@@ -21,6 +21,14 @@
     <string name="hint_content">手动输入或批量粘贴收件人运单号，并以“，”或换行分割，最大限度50个号码</string>
     <string name="piliang">批量录入单号</string>
     <string name="moren">不指定就是默认自己</string>
+    <string name="shoujian">收件</string>
+    <string name="fajian">发件</string>
+    <string name="paijian">派件</string>
+    <string name="daojian">到件</string>
+    <string name="qianshoujian">签收件</string>
+    <string name="paijianshaomian">派件扫描</string>
+    <string name="qiaoshoushaomiao">签收扫描</string>
+    <string name="saomiaotongji">扫描统计</string>
     <string name="title_activity_delivery">DeliveryActivity</string>
     <string name="title_activity_fragments">FragmentsActivity</string>
     <string name="title_activity_scan_record">ScanRecordActivity</string>
