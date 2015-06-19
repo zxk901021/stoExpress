@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+    
+    <ImageView 
+        android:id="@+id/delivery_chosen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/select_edit_identity"/>
+    <TextView 
+        android:id="@+id/delivery_order_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/delivery_chosen"/>
+    
+     <TextView 
+        android:id="@+id/delivery_order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/grey_text"
+        android:textSize="16sp"
+        android:layout_below="@+id/delivery_order_id"
+        android:layout_toRightOf="@+id/delivery_chosen"/>
+     
+     <TextView 
+        android:id="@+id/delivery_order_courier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:text="葛志中"
+        android:drawableRight="@drawable/e3_modifytype_icon"/>
+     
+     <ImageView 
+         android:id="@+id/delivery_delete"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/delete_gray_icon"
+        android:layout_alignParentRight="true"/>
+    
+    
+
+</RelativeLayout>
