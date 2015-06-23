@@ -79,8 +79,7 @@ public class DeliveryAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				ListDialog dialog = new ListDialog(context, model);
-				dialog.setTitle("选签收人");
+				ListDialog dialog = new ListDialog(context, model, "选签收人");
 				dialog.show();
 			}
 		});

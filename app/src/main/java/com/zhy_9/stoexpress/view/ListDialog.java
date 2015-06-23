@@ -1,30 +1,26 @@
 package com.zhy_9.stoexpress.view;
 
-import java.util.List;
-
-import com.zhy_9.stoexpress.R;
-import com.zhy_9.stoexpress.adapter.DialogListAdapter;
-import com.zhy_9.stoexpress.model.ListDialogModel;
-import com.zhy_9.stoexpress.util.CommonUtil;
-
-import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.zhy_9.stoexpress.R;
+import com.zhy_9.stoexpress.adapter.DialogListAdapter;
+import com.zhy_9.stoexpress.model.ListDialogModel;
+import com.zhy_9.stoexpress.util.CommonUtil;
+
+import java.util.List;
 
 public class ListDialog extends Dialog {
 
@@ -35,6 +31,8 @@ public class ListDialog extends Dialog {
 	private Context context;
 	private DialogListAdapter adapter;
 	private List<ListDialogModel> data;
+	private List<ListDialogModel> model;
+	private String diaTitle;
 
 	private float currentY, tanslationY;
 
@@ -46,10 +44,10 @@ public class ListDialog extends Dialog {
 		this.context = context;
 	}
 
-	public ListDialog(Context context, List<ListDialogModel> data) {
+	public ListDialog(Context context, List<ListDialogModel> data, String diaTitle) {
 		this(context, R.style.list_dialog);
 		this.data = data;
-
+		this.diaTitle = diaTitle;
 	}
 
 	@Override
@@ -70,19 +68,19 @@ public class ListDialog extends Dialog {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-					data.get(position).setIsChosen(1);
-					for (int i = 0, len = data.size(); i < len; i++) {
-						if (i != position) {
-							data.get(i).setIsChosen(0);
-						}
+									int position, long id) {
+				data.get(position).setIsChosen(1);
+				for (int i = 0, len = data.size(); i < len; i++) {
+					if (i != position) {
+						data.get(i).setIsChosen(0);
 					}
-					adapter.notifyDataSetChanged();
+				}
+				adapter.notifyDataSetChanged();
 			}
 		});
-		
-		
-		
+
+
+
 //		list.setOnScrollListener(new OnScrollListener() {
 //
 //			@Override
@@ -130,10 +128,12 @@ public class ListDialog extends Dialog {
 		params.height = (int) (default_height * density);
 		params.gravity = Gravity.CENTER;
 		window.setAttributes(params);
-
+		setTitle(diaTitle);
 	}
 
 	public void setTitle(String diaTitle) {
-		title.setText(diaTitle);
+		if (diaTitle != null) {
+			title.setText(diaTitle);
+		}
 	}
 }

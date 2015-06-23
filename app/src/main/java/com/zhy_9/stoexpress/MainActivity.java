@@ -70,8 +70,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 					model.setIsVisiable(1);
 					data.add(model);
 				}
-				ListDialog dialog = new ListDialog(MainActivity.this, data);
-				dialog.setTitle("选择问题类型");
+				ListDialog dialog = new ListDialog(MainActivity.this, data, "选择问题类型");
 				dialog.show();
 			}
 		});
