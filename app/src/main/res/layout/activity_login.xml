@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey" >
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="@string/login" 
+        android:gravity="center"
+        android:background="@color/green"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+    
+    
+    <EditText 
+        android:id="@+id/login_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/overarea_result_bg"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/login_title"
+        android:drawableLeft="@drawable/icon_mobile"
+        android:padding="10dp"
+        android:inputType="phone"
+        android:hint="@string/phone_hint"
+        android:drawablePadding="10dp"
+        android:textCursorDrawable="@null"/>
+    <ImageView 
+        android:id="@+id/delete_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/icon_delete"
+        android:layout_alignTop="@+id/login_phone"
+        android:layout_alignBottom="@+id/login_phone"
+        android:visibility="gone"/>
+    <EditText 
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/overarea_result_bg"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/login_phone"
+        android:drawableLeft="@drawable/icon_pwd"
+        android:padding="10dp"
+        android:hint="@string/passwd_hint"
+        android:inputType="textPassword"
+        android:drawablePadding="10dp"
+        android:textCursorDrawable="@null"/>
+    <ImageView 
+        android:id="@+id/delete_passwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_phone"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/icon_delete"
+        android:layout_alignTop="@+id/login_password"
+        android:layout_alignBottom="@+id/login_password"
+        android:visibility="gone"/>
+    
+    <Button 
+        android:id="@+id/login_ensure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_corner"
+        android:textColor="@color/white"
+        android:text="@string/login"
+        android:textSize="18sp"
+        android:layout_below="@+id/login_password"/>
+
+</RelativeLayout>
