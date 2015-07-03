@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    
+    <ListView
+        android:id="@+id/problem_fragment_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:background="@color/grey"
+         android:layout_above="@+id/list_upload_problem">
+    </ListView>
+    
+    
+    <com.zhy_9.stoexpress.view.DrawableCenterTextView
+            android:id="@+id/list_upload_problem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/upload"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            android:drawableLeft="@drawable/sto_bg_upload"
+            android:drawablePadding="5dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+
+</RelativeLayout>

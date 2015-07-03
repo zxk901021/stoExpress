@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="qianshou">
+        <item >邮件签收章</item>
+        <item >本人签收</item>
+        <item >门卫签收</item>
+        <item >前台签收</item>
+        <item >家人签收</item>
+        <item >同事代签</item>
+        <item >物管代签</item>
+        <item >代理点代签</item>
+        <item >学校代理点代签</item>
+        <item >补签</item>
+        
+    </string-array>
+</resources>

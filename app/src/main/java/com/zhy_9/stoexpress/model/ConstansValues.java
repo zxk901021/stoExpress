@@ -8,4 +8,8 @@ public class ConstansValues {
 	public static final int SIGN_FOR = 3;
 	public static final int SCAN_RECORD = 4;
 	public static final int UPLOAD_DATA = 5;
+	
+	public static final String DELIVERY_DB_TYPE = "1";
+	public static final String PROBLEM_DB_TYPE = "2";
+	public static final String SIGN_FOR_DB_TYPE = "3";
 }

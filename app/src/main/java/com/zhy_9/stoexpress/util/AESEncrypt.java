@@ -11,7 +11,6 @@ import android.util.Log;
 
 public class AESEncrypt {
 
-
 	private static String key = "Guz(%&hj7x89H$yuBI0456FtmaT5&fvH";
 	private static String iv = "E4ghj*Ghg7!rNIfb";
 

@@ -8,28 +8,27 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class ContentText extends FrameLayout{
-	
+public class ContentText extends FrameLayout {
 
 	private TextView textKey;
-	
+
 	private TextView textValue;
-	
+
 	public ContentText(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.text_content, this);
 		textKey = (TextView) findViewById(R.id.text_key);
 		textValue = (TextView) findViewById(R.id.text_value);
 	}
-	
-	public void setKeyText(String keyStr){
+
+	public void setKeyText(String keyStr) {
 		textKey.setText(keyStr);
 	}
-	
-	public void setValueText (String valueStr){
+
+	public void setValueText(String valueStr) {
 		textValue.setText(valueStr);
 	}
-	
+
 	public void setTextColor(int color) {
 	}
 }

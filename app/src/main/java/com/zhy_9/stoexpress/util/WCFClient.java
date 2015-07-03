@@ -31,10 +31,29 @@ public class WCFClient {
 		boolean flag = getRequesData(methodName, action, params, propertyName,
 				responseStr);
 		String result = "";
-		result = responseStr.toString();
+		if (flag) {
+			result = responseStr.toString();
+		}else {
+			result = "";
+		}
 		return result;
 	}
 	
+	public static String getTime(){
+		StringBuilder responseStr = new StringBuilder();
+		String propertyName = "ServerTimeResult";
+		String methodName = "ServerTime";
+		String action = SOAP_ACTION + methodName;
+		boolean flag = getRequesData(methodName, action, null, propertyName, responseStr);
+		String result = "";
+		if (flag) {
+			result = responseStr.toString();
+		}else {
+			result = "";
+		}
+		
+		return result;
+	}
 	
 	public static String download(String transfer, String param){
 		StringBuilder responStr = new StringBuilder();
@@ -50,14 +69,43 @@ public class WCFClient {
 		PropertyInfo[] params = {requestProperty, requestProperty1};
 		boolean flag = getRequesData(methodName, action, params, propertyName, responStr);
 		String result = "";
-		result = responStr.toString();
 		
+		if (flag) {
+			result = responStr.toString();
+		}else {
+			result = "";
+		}
 		String temp = GZipUtil.gZipUnString(result);
 		
 		Log.e("temp", temp);
-		return result;
+		return temp;
 	}
 	
+	
+	public static String upload (String transfer, String content){
+		StringBuilder responStr = new StringBuilder();
+		String propertyName = "UploadResult";
+		String methodName = "Upload";
+		String action = SOAP_ACTION + methodName;
+		PropertyInfo requestProperty = new PropertyInfo();
+		requestProperty.setName("transferParam");
+		requestProperty.setValue(transfer);
+		PropertyInfo requestProperty1 = new PropertyInfo();
+		requestProperty1.setName("content");
+		requestProperty1.setValue(content);
+		PropertyInfo[] params = { requestProperty, requestProperty1 };
+		boolean flag = getRequesData(methodName, action, params, propertyName,
+				responStr);
+		String result = "";
+		if (flag) {
+			result = responStr.toString();
+		}else {
+			result = "";
+		}
+
+		Log.e("temp", result);
+		return result;
+	}
 
 	public static boolean getRequesData(String methodName, String soap_action,
 			PropertyInfo[] proInfo, String responsePropetryName,

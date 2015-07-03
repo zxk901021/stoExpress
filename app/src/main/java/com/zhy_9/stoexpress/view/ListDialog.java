@@ -1,5 +1,12 @@
 package com.zhy_9.stoexpress.view;
 
+import java.util.List;
+
+import com.zhy_9.stoexpress.R;
+import com.zhy_9.stoexpress.adapter.DialogListAdapter;
+import com.zhy_9.stoexpress.model.ListDialogModel;
+import com.zhy_9.stoexpress.util.CommonUtil;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,13 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.zhy_9.stoexpress.R;
-import com.zhy_9.stoexpress.adapter.DialogListAdapter;
-import com.zhy_9.stoexpress.model.ListDialogModel;
-import com.zhy_9.stoexpress.util.CommonUtil;
-
-import java.util.List;
-
 public class ListDialog extends Dialog {
 
 	private TextView title;
@@ -31,23 +31,26 @@ public class ListDialog extends Dialog {
 	private Context context;
 	private DialogListAdapter adapter;
 	private List<ListDialogModel> data;
-	private List<ListDialogModel> model;
 	private String diaTitle;
 
 	private float currentY, tanslationY;
 
 	private static int default_width = 280;
 	private static int default_height = 360;
+	private ListDialogCallBack callBack;
+	private String content;
 
 	public ListDialog(Context context, int style) {
 		super(context, style);
 		this.context = context;
 	}
 
-	public ListDialog(Context context, List<ListDialogModel> data, String diaTitle) {
+	public ListDialog(Context context, List<ListDialogModel> data,
+			String diaTitle, ListDialogCallBack callBack) {
 		this(context, R.style.list_dialog);
 		this.data = data;
 		this.diaTitle = diaTitle;
+		this.callBack = callBack;
 	}
 
 	@Override
@@ -68,58 +71,41 @@ public class ListDialog extends Dialog {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-									int position, long id) {
+					int position, long id) {
 				data.get(position).setIsChosen(1);
 				for (int i = 0, len = data.size(); i < len; i++) {
 					if (i != position) {
 						data.get(i).setIsChosen(0);
 					}
+
 				}
 				adapter.notifyDataSetChanged();
+
 			}
 		});
+		cancel.setOnClickListener(new View.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				ListDialog.this.dismiss();
+			}
+		});
+		ensure.setOnClickListener(new View.OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				for (int i = 0, len = data.size(); i < len; i++) {
+					if (data.get(i).getIsChosen() == 1) {
+						content = data.get(i).getListContent();
+					}
+				}
+				if (callBack != null) {
+					callBack.getListContent(content);
+					ListDialog.this.dismiss();
+				}
 
-//		list.setOnScrollListener(new OnScrollListener() {
-//
-//			@Override
-//			public void onScrollStateChanged(AbsListView view, int scrollState) {
-//
-//				switch (scrollState) {
-//				case SCROLL_STATE_FLING:
-//					Log.e("scroll", "SCROLL_STATE_FLING");
-//					break;
-//
-//				case SCROLL_STATE_IDLE:
-//					Log.e("scroll", "SCROLL_STATE_IDLE");
-//					break;
-//
-//				case SCROLL_STATE_TOUCH_SCROLL:
-//					Log.e("scroll", "SCROLL_STATE_TOUCH_SCROLL");
-//					if (bottomY == currentY) {
-//						ObjectAnimator animator = ObjectAnimator.ofFloat(
-//								takePhoto, "translationY", currentY,
-//								tanslationY);
-//						animator.setDuration(500);
-//						animator.start();
-//					} else {
-//						ObjectAnimator animator = ObjectAnimator.ofFloat(
-//								takePhoto, "translationY", tanslationY,
-//								currentY);
-//						animator.setDuration(500);
-//						animator.start();
-//					}
-//					break;
-//				}
-//			}
-//
-//			@Override
-//			public void onScroll(AbsListView view, int firstVisibleItem,
-//					int visibleItemCount, int totalItemCount) {
-//
-//			}
-//		});
+			}
+		});
 
 		Window window = getWindow();
 		WindowManager.LayoutParams params = window.getAttributes();
@@ -129,6 +115,10 @@ public class ListDialog extends Dialog {
 		params.gravity = Gravity.CENTER;
 		window.setAttributes(params);
 		setTitle(diaTitle);
+	}
+
+	public interface ListDialogCallBack {
+		public void getListContent(String content);
 	}
 
 	public void setTitle(String diaTitle) {

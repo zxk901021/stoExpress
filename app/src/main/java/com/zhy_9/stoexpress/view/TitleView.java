@@ -14,14 +14,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class TitleView extends FrameLayout{
-	
+public class TitleView extends FrameLayout {
+
 	private ImageView leftImage;
-	
+
 	private TextView title;
-	
+
 	private TextView rightText;
-	
+
 	private RelativeLayout titleBg;
 
 	public TitleView(Context context, AttributeSet attrs) {
@@ -31,21 +31,20 @@ public class TitleView extends FrameLayout{
 		leftImage = (ImageView) findViewById(R.id.title_left);
 		title = (TextView) findViewById(R.id.title_text);
 		rightText = (TextView) findViewById(R.id.title_right);
-		
+
 		leftImage.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				((Activity)getContext()).finish();
+				((Activity) getContext()).finish();
 			}
 		});
-		
-		
+
 	}
-	
-	public void rightTextListener(final RightBtnCallBack callBack){
+
+	public void rightTextListener(final RightBtnCallBack callBack) {
 		rightText.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				if (callBack != null) {
@@ -54,35 +53,36 @@ public class TitleView extends FrameLayout{
 			}
 		});
 	}
-	
-	public void setTitle (String titleStr) {
+
+	public void setTitle(String titleStr) {
 		title.setText(titleStr);
 	}
-	
-	public void setTitleColor (String colorRGB) {
+
+	public void setTitleColor(String colorRGB) {
 		title.setTextColor(Color.parseColor(colorRGB));
 	}
-	
-	public void setBackgroundColor (int color) {
+
+	public void setBackgroundColor(int color) {
 		titleBg.setBackgroundColor(color);
 	}
-	
-	public void setRightText (String rightTextStr) {
+
+	public void setRightText(String rightTextStr) {
 		rightText.setText(rightTextStr);
 	}
 
-	public void setRightTextDrawable(int resId){
+	public void setRightTextDrawable(int resId) {
 		Drawable drawable = getResources().getDrawable(resId);
-		drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
 		rightText.setCompoundDrawables(drawable, null, null, null);
 	}
-	
-	public void setRightTextGone(boolean isGone){
+
+	public void setRightTextGone(boolean isGone) {
 		if (isGone) {
 			rightText.setVisibility(View.GONE);
 		}
 	}
-	
+
 	public interface RightBtnCallBack {
 		void onRightBtnClick();
 	}

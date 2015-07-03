@@ -38,7 +38,8 @@
         android:layout_marginRight="20dp"
         android:padding="10dp"
         android:layout_centerVertical="true"
-        android:textCursorDrawable="@color/grey"/>
+        android:textCursorDrawable="@null"
+        android:inputType="number"/>
     
     <LinearLayout 
         android:layout_width="match_parent"

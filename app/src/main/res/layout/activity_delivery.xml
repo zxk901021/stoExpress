@@ -30,6 +30,7 @@
             android:drawablePadding="3dp" />
 
         <com.zhy_9.stoexpress.view.DrawableCenterTextView
+            android:id="@+id/delivery_mid_title"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

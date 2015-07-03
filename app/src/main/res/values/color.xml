@@ -9,8 +9,8 @@
       <color name="grey">#f2f2f2</color>
       <color name="grey_line">#d6d6d6</color>
       <color name="grey_text">#585858</color>
-    <color name="green">#0cbaa0</color>
-    <color name="yellow_btn">#f6a869</color>
+      <color name="green">#0cbaa0</color>
+      <color name="yellow_btn">#f6a869</color>
       
       <drawable name="transparent">#00000000</drawable>
 

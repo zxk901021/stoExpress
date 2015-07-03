@@ -16,12 +16,12 @@ public class SecondListAdapter extends BaseAdapter {
 
 	List<ScanRecord> data;
 	LayoutInflater inflater;
-	
-	public SecondListAdapter (List<ScanRecord> data, Context context) {
+
+	public SecondListAdapter(List<ScanRecord> data, Context context) {
 		this.data = data;
 		inflater = LayoutInflater.from(context);
 	}
-	
+
 	@Override
 	public int getCount() {
 		return data.size();
@@ -43,11 +43,13 @@ public class SecondListAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new SecondListHolder();
 			convertView = inflater.inflate(R.layout.second_list_layout, null);
-			holder.expressId = (TextView) convertView.findViewById(R.id.express_id);
-			holder.expressTime = (TextView) convertView.findViewById(R.id.express_time);
+			holder.expressId = (TextView) convertView
+					.findViewById(R.id.express_id);
+			holder.expressTime = (TextView) convertView
+					.findViewById(R.id.express_time);
 			holder.courier = (TextView) convertView.findViewById(R.id.courier);
 			convertView.setTag(holder);
-		}else {
+		} else {
 			holder = (SecondListHolder) convertView.getTag();
 		}
 		holder.expressTime.setText(data.get(position).getTime());
@@ -61,5 +63,5 @@ public class SecondListAdapter extends BaseAdapter {
 		TextView expressTime;
 		TextView courier;
 	}
-	
+
 }

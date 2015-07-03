@@ -10,29 +10,28 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class CircleCornerDialog extends Dialog{
-	
-	
+public class CircleCornerDialog extends Dialog {
+
 	private static int default_width = 160;
 	private static int default_height = 120;
-	
+
 	public CircleCornerDialog(Context context, View layout, int style) {
-		this(context, default_width, default_height, layout, style);  
+		this(context, default_width, default_height, layout, style);
 	}
 
-	public CircleCornerDialog(Context context, int width, int height, View layout, int style) {  
-        super(context, style);  
-        setContentView(layout);  
-        Window window = getWindow();  
-        WindowManager.LayoutParams params = window.getAttributes();  
-        float density = CommonUtil.getDensity(context);
-        Log.e("density", density+"");
-        params.width=(int) (width*density);  
-        params.height=(int) (height*density);  
-        params.gravity = Gravity.CENTER;  
-        window.setAttributes(params);  
-        
-        
-    }  
-	
+	public CircleCornerDialog(Context context, int width, int height,
+			View layout, int style) {
+		super(context, style);
+		setContentView(layout);
+		Window window = getWindow();
+		WindowManager.LayoutParams params = window.getAttributes();
+		float density = CommonUtil.getDensity(context);
+		Log.e("density", density + "");
+		params.width = (int) (width * density);
+		params.height = (int) (height * density);
+		params.gravity = Gravity.CENTER;
+		window.setAttributes(params);
+
+	}
+
 }

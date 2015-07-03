@@ -3,7 +3,7 @@ package com.zhy_9.stoexpress.adapter;
 import java.util.List;
 
 import com.zhy_9.stoexpress.R;
-import com.zhy_9.stoexpress.model.ScanRecord;
+import com.zhy_9.stoexpress.model.Record;
 
 import android.content.Context;
 import android.util.Log;
@@ -19,9 +19,9 @@ public class ScanRecordAdapter extends BaseAdapter {
 
 	Context context;
 	LayoutInflater inflater;
-	List<ScanRecord> data;
+	List<Record> data;
 
-	public ScanRecordAdapter(Context context, List<ScanRecord> data) {
+	public ScanRecordAdapter(Context context, List<Record> data) {
 		this.context = context;
 		this.data = data;
 		inflater = LayoutInflater.from(context);
@@ -57,7 +57,8 @@ public class ScanRecordAdapter extends BaseAdapter {
 			holder = (ScanRecordHolder) convertView.getTag();
 		}
 		holder.textView.setText(data.get(position).getDate());
-		holder.listView.setAdapter(new SecondListAdapter(data, context));
+		holder.listView.setAdapter(new SecondListAdapter(data.get(position)
+				.getInfo(), context));
 		setListViewHeightBasedOnChildren(holder.listView);
 
 		return convertView;
@@ -73,7 +74,6 @@ public class ScanRecordAdapter extends BaseAdapter {
 			View listItem = adapter.getView(i, null, view);
 			listItem.measure(0, 0);
 			totalHeight += listItem.getMeasuredHeight();
-			Log.e("setChildrenHeight", listItem.getMeasuredHeight() + "");
 		}
 		ViewGroup.LayoutParams params = view.getLayoutParams();
 		params.height = totalHeight

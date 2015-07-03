@@ -15,17 +15,16 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DialogListAdapter extends BaseAdapter{
+public class DialogListAdapter extends BaseAdapter {
 
 	private LayoutInflater inflater;
 	private List<ListDialogModel> data;
-	
-	
-	public DialogListAdapter(Context context, List<ListDialogModel> data){
+
+	public DialogListAdapter(Context context, List<ListDialogModel> data) {
 		inflater = LayoutInflater.from(context);
 		this.data = data;
 	}
-	
+
 	@Override
 	public int getCount() {
 		return data.size();
@@ -47,27 +46,30 @@ public class DialogListAdapter extends BaseAdapter{
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.dialog_list_item, null);
 			holder = new DialogViewHolder();
-			holder.select = (ImageView) convertView.findViewById(R.id.dialog_item_select);
-			holder.itemText = (TextView) convertView.findViewById(R.id.dialog_item_text);
-			holder.delete = (ImageView) convertView.findViewById(R.id.dialog_item_delete);
+			holder.select = (ImageView) convertView
+					.findViewById(R.id.dialog_item_select);
+			holder.itemText = (TextView) convertView
+					.findViewById(R.id.dialog_item_text);
+			holder.delete = (ImageView) convertView
+					.findViewById(R.id.dialog_item_delete);
 			convertView.setTag(holder);
-		}else {
+		} else {
 			holder = (DialogViewHolder) convertView.getTag();
 		}
 		holder.itemText.setText(data.get(position).getListContent());
 		holder.itemText.setTextColor(Color.BLACK);
 		if (data.get(position).getIsChosen() == 1) {
-			
+
 			holder.select.setImageResource(R.drawable.sto_batch_add_checked);
-		}else {
+		} else {
 			holder.select.setImageResource(R.drawable.select_edit_identity);
 		}
 		if (data.get(position).getIsVisiable() == 0) {
 			holder.delete.setVisibility(View.GONE);
-		}else {
+		} else {
 			holder.delete.setVisibility(View.VISIBLE);
 			holder.delete.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					data.remove(position);
@@ -75,15 +77,14 @@ public class DialogListAdapter extends BaseAdapter{
 				}
 			});
 		}
-		
+
 		return convertView;
 	}
-	
 
-	class DialogViewHolder{
+	class DialogViewHolder {
 		private ImageView select;
 		private TextView itemText;
 		private ImageView delete;
 	}
-	
+
 }

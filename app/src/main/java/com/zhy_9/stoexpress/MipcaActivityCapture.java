@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
@@ -12,17 +13,21 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.zhy_9.stoexpress.db.SQLManager;
+import com.zhy_9.stoexpress.model.ConstansValues;
 import com.zhy_9.stoexpress.view.CircleCornerDialog;
 import com.zhy_9.stoexpress.view.TitleView;
 import com.zhy_9.stoexpress.view.ViewfinderView;
@@ -33,7 +38,7 @@ import com.zhy_9.stoexpress.zxing.decoding.InactivityTimer;
 /**
  * Initial the camera
  * 
- * @author Ryan.Tang
+ * 
  */
 public class MipcaActivityCapture extends Activity implements Callback {
 
@@ -52,6 +57,10 @@ public class MipcaActivityCapture extends Activity implements Callback {
 	private TextView batchScan;
 	private TextView openLight;
 	private TextView editByHand;
+	private SQLManager manager;
+	private int flag;
+	private String editNum;
+	private EditText resultEdit;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -59,9 +68,12 @@ public class MipcaActivityCapture extends Activity implements Callback {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_capture);
-		// ViewUtil.addTopView(getApplicationContext(), this,
-		// R.string.scan_card);
 		CameraManager.init(getApplication());
+		manager = new SQLManager(this);
+
+		Intent intent = getIntent();
+		flag = intent.getIntExtra(ConstansValues.BUTTON_FLAG, 0);
+
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
 		qrTitle = (TitleView) findViewById(R.id.qr_title);
 		qrTitle.setTitle("扫一扫");
@@ -90,10 +102,45 @@ public class MipcaActivityCapture extends Activity implements Callback {
 			public void onClick(View v) {
 				View batchDialog = getLayoutInflater().inflate(
 						R.layout.batch_scan_dialog, null);
-				CircleCornerDialog dialog = new CircleCornerDialog(
+				final CircleCornerDialog dialog = new CircleCornerDialog(
 						MipcaActivityCapture.this, 300, 256, batchDialog,
 						R.style.batch_dialog);
 				dialog.show();
+				resultEdit = (EditText) batchDialog
+						.findViewById(R.id.scan_edit);
+				batchDialog.findViewById(R.id.scan_dialog_cancel)
+						.setOnClickListener(new OnClickListener() {
+
+							@Override
+							public void onClick(View v) {
+								dialog.dismiss();
+							}
+						});
+				batchDialog.findViewById(R.id.scan_dialog_ensure)
+						.setOnClickListener(new OnClickListener() {
+
+							@Override
+							public void onClick(View v) {
+								if (TextUtils.isEmpty(resultEdit.getText()
+										.toString())) {
+									Toast.makeText(MipcaActivityCapture.this,
+											"快递单号不能为空", Toast.LENGTH_SHORT)
+											.show();
+								} else {
+									editNum = resultEdit.getText().toString();
+									dialog.dismiss();
+									Intent intent = new Intent(
+											MipcaActivityCapture.this,
+											DeliveryActivity.class);
+									intent.putExtra("result", editNum);
+									intent.putExtra(ConstansValues.BUTTON_FLAG,
+											flag);
+									startActivity(intent);
+									finish();
+								}
+
+							}
+						});
 			}
 		});
 
@@ -158,6 +205,15 @@ public class MipcaActivityCapture extends Activity implements Callback {
 		} else {
 			Toast.makeText(MipcaActivityCapture.this, resultString,
 					Toast.LENGTH_SHORT).show();
+			// ScanRecord record = new ScanRecord();
+			// record.setExpressId(resultString);
+			// manager.addScanRecord(record);
+			Intent intent = new Intent(MipcaActivityCapture.this,
+					DeliveryActivity.class);
+			intent.putExtra("result", resultString);
+			intent.putExtra(ConstansValues.BUTTON_FLAG, flag);
+			startActivity(intent);
+			finish();
 			// Intent resultIntent = new Intent();
 			// // Bundle bundle = new Bundle();
 			// // bundle.putString("result", resultString);
