@@ -1,23 +1,5 @@
 package com.zhy_9.stoexpress;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.zhy_9.stoexpress.db.SQLManager;
-import com.zhy_9.stoexpress.model.ConstansValues;
-import com.zhy_9.stoexpress.model.ListDialogModel;
-import com.zhy_9.stoexpress.model.ProblemType;
-import com.zhy_9.stoexpress.model.StoInfo;
-import com.zhy_9.stoexpress.util.AESEncrypt;
-import com.zhy_9.stoexpress.util.SharedPreferencesData;
-import com.zhy_9.stoexpress.util.WCFClient;
-import com.zhy_9.stoexpress.util.XmlParse;
-import com.zhy_9.stoexpress.view.ListDialog;
-import com.zhy_9.stoexpress.view.TitleView;
-import com.zhy_9.stoexpress.view.TitleView.RightBtnCallBack;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +8,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.zhy_9.stoexpress.db.SQLManager;
+import com.zhy_9.stoexpress.model.ConstansValues;
+import com.zhy_9.stoexpress.model.ListDialogModel;
+import com.zhy_9.stoexpress.model.ProblemType;
+import com.zhy_9.stoexpress.model.StoInfo;
+import com.zhy_9.stoexpress.util.AESEncrypt;
+import com.zhy_9.stoexpress.util.CommonUtil;
+import com.zhy_9.stoexpress.util.SharedPreferencesData;
+import com.zhy_9.stoexpress.util.WCFClient;
+import com.zhy_9.stoexpress.util.XmlParse;
+import com.zhy_9.stoexpress.view.ListDialog;
+import com.zhy_9.stoexpress.view.TitleView;
+import com.zhy_9.stoexpress.view.TitleView.RightBtnCallBack;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
 
@@ -42,19 +43,19 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
-			case 1:
-				InputStream in = new ByteArrayInputStream(result.getBytes());
-				List<ProblemType> list = new ArrayList<ProblemType>();
-				Log.e("result", result);
-				list = XmlParse.doParse(in);
-				for (int i = 0, len = list.size(); i < len; i++) {
-					sqlManager = new SQLManager(MainActivity.this);
-					sqlManager.addProblemType(list.get(i));
-				}
-				break;
+				case 1:
+					InputStream in = new ByteArrayInputStream(result.getBytes());
+					List<ProblemType> list = new ArrayList<ProblemType>();
+					Log.e("result", result);
+					list = XmlParse.doParse(in);
+					for (int i = 0, len = list.size(); i < len; i++) {
+						sqlManager = new SQLManager(MainActivity.this);
+						sqlManager.addProblemType(list.get(i));
+					}
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 		};
 	};
@@ -106,6 +107,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 
 					@Override
 					public void run() {
+						CommonUtil.copyDB();
 						String time = WCFClient.getTime();
 						Log.e("time", time);
 						String transferParam = AESEncrypt
@@ -136,11 +138,11 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 				ListDialog dialog = new ListDialog(MainActivity.this, data,
 						"选择问题类型", new ListDialog.ListDialogCallBack() {
 
-							@Override
-							public void getListContent(String content) {
+					@Override
+					public void getListContent(String content) {
 
-							}
-						});
+					}
+				});
 				dialog.show();
 			}
 		});
@@ -165,31 +167,31 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.delivery:
-			jumpToActivity(ConstansValues.DELIVERY);
-			break;
+			case R.id.delivery:
+				jumpToActivity(ConstansValues.DELIVERY);
+				break;
 
-		case R.id.problem_shipment:
-			jumpToActivity(ConstansValues.PROBLEM_SHIPMENT);
-			break;
+			case R.id.problem_shipment:
+				jumpToActivity(ConstansValues.PROBLEM_SHIPMENT);
+				break;
 
-		case R.id.sign_for:
-			jumpToActivity(ConstansValues.SIGN_FOR);
-			break;
+			case R.id.sign_for:
+				jumpToActivity(ConstansValues.SIGN_FOR);
+				break;
 
-		case R.id.scan_record:
-			jumpToActivity(ConstansValues.SCAN_RECORD);
-			break;
+			case R.id.scan_record:
+				jumpToActivity(ConstansValues.SCAN_RECORD);
+				break;
 
-		case R.id.upload_data:
-			if (sqlManager.queryUpload()) {
-				jumpToActivity(ConstansValues.UPLOAD_DATA);
-			} else {
-				Toast.makeText(MainActivity.this, "没有可上传内容", Toast.LENGTH_SHORT)
-						.show();
-			}
+			case R.id.upload_data:
+				if (sqlManager.queryUpload()) {
+					jumpToActivity(ConstansValues.UPLOAD_DATA);
+				} else {
+					Toast.makeText(MainActivity.this, "没有可上传内容", Toast.LENGTH_SHORT)
+							.show();
+				}
 
-			break;
+				break;
 		}
 	}
 
