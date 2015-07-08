@@ -1,15 +1,9 @@
 package com.zhy_9.stoexpress.fragment;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.ListView;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.zhy_9.stoexpress.R;
 import com.zhy_9.stoexpress.adapter.ScanRecordAdapter;
@@ -21,8 +15,16 @@ import com.zhy_9.stoexpress.util.GZipUtil;
 import com.zhy_9.stoexpress.util.WCFClient;
 import com.zhy_9.stoexpress.view.DrawableCenterTextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.ListView;
 
 public class DeliveryListFragment extends Fragment {
 
@@ -68,29 +70,87 @@ public class DeliveryListFragment extends Fragment {
 									.encrypt("{\"EnterpriseID\":\"TJSTO\","
 											+ "\"StationID\":\"300000\","
 											+ "\"PDAID\":\"869573010995351\","
-											+ "\"Phone\":\"13700201234\","
+											+ "\"Phone\":\"18920680203\","
 											+ "\"EmpNo\":\"0001\","
-											+ "\"Password\":\"1234\","
+											+ "\"Password\":\"7110\","
 											+ "\"Version\":\"V1.0\","
 											+ "\"DefaultLogic\":false,"
 											+ "\"Compress\":true,\"FileType\":0}");
-							String cotent = "<XML><ScanType Name=\"PJ\">" +
+//							String cotent = "<XML><ScanType Name=\"PJ\">" +
+//									"<ExpressType Name=\"C_N\">" +
+//									"<Row>" +
+//									"04" +
+//									"9000006875    " +
+//									"20141101151128" +
+//									"468123400000    " +
+//									"9000000000     " +
+//									"20141101" +
+//									"359836049340965" +
+//									"</Row>" +
+//									"</ExpressType>" +
+//									"</ScanType>" +
+//									"</XML>";
+							String tongshi = "同事签收  ";
+							String gbk = null;
+							try {
+								gbk = URLEncoder.encode(tongshi, "GBK");
+							} catch (UnsupportedEncodingException e1) {
+								e1.printStackTrace();
+							}
+							String signForContent = "<XML><ScanType Name=\"QS\">" +
 									"<ExpressType Name=\"C_N\">" +
 									"<Row>" +
-									"04" +
-									"9000006875    " +
-									"20141101151128" +
+									"99" +
+									"3000000001    " +
+									"20150708140228" +
+									" " + " " +
 									"468123400000    " +
-									"9000000000     " +
-									"20141101" +
+									"3000000001    " +
+									"20150708" +
+									" " + 
+									"同事签收  " + 
+									"        " +
+									"          " + 
+									"              " +
+									"        " + 
+									"               " +
 									"359836049340965" +
 									"</Row>" +
 									"</ExpressType>" +
 									"</ScanType>" +
 									"</XML>";
-							String content = GZipUtil.gZipString(cotent);
-							String result = WCFClient.upload(transferParam, content);
-							Log.e("result", result);
+//							StringBuilder builder = new StringBuilder();
+//							builder.append("99").
+//							append("3000000001    ").
+//							append("20150708140228").
+//							append(" ").
+//							append(" ").
+//							append("468123400000    ").
+//							append("3000000001    ").
+//							append("20150708").
+//							append(" ").
+//							append(gbk).
+//							append("        ").
+//							append("          ").
+//							append("              ").
+//							append("        ").
+//							append("               ").
+//							append("359836049340965");
+//							String content = GZipUtil.gZipString(cotent);
+							try {
+								String params = URLEncoder.encode(signForContent, "GBK");
+//								Log.e("gbk", signForContent.length() + "");
+								String param = GZipUtil.gZipString(signForContent);
+//								Log.e("gzip", param);
+								String result = WCFClient.upload(transferParam, param);
+								Log.e("up", transferParam);
+								Log.e("up", param);
+//								Log.e("result", result);
+							} catch (UnsupportedEncodingException e) {
+								e.printStackTrace();
+							}
+							
+							
 						}
 					}).start();
 					

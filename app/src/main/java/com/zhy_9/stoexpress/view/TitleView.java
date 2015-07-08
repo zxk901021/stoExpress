@@ -70,6 +70,7 @@ public class TitleView extends FrameLayout {
 		rightText.setText(rightTextStr);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void setRightTextDrawable(int resId) {
 		Drawable drawable = getResources().getDrawable(resId);
 		drawable.setBounds(0, 0, drawable.getMinimumWidth(),

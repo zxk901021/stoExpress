@@ -32,13 +32,22 @@
     <string name="saomiaotongji">扫描统计</string>
     <string name="wentijian">问题件</string>
     <string name="phone_hint">请输入公司业务手机号</string>
+    <string name="staff_number">请输入员工编号</string>
+    <string name="branch_number">请输入网点编号</string>
+    <string name="password_set">请设置您的登陆密码</string>
+    <string name="password_ensure">确认密码</string>
     <string name="passwd_hint">请输入密码</string>
     <string name="paijianyuan">指定派件员</string>
     <string name="hint_content2">请输入员工编号（最后四位）</string>
+    <string name="sign_in">立即注册</string>
+    <string name="reset_password">修改密码/忘记密码？</string>
+    <string name="next">下一步</string>
     <string name="title_activity_delivery">DeliveryActivity</string>
     <string name="title_activity_scan_record">ScanRecordActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_scan_statistics">ScanStatisticsActivity</string>
     <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
 
 </resources>

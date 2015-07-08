@@ -7,8 +7,10 @@ import java.nio.charset.Charset;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import android.annotation.SuppressLint;
 import android.util.Base64;
 
+@SuppressLint("NewApi")
 public class GZipUtil {
 
 	/**

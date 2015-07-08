@@ -12,4 +12,6 @@ public class ConstansValues {
 	public static final String DELIVERY_DB_TYPE = "1";
 	public static final String PROBLEM_DB_TYPE = "2";
 	public static final String SIGN_FOR_DB_TYPE = "3";
+	
+	public static final String HELP_WEB_URL = "http://m.kuaidihelp.com/help/baqiang_sto.html";
 }

@@ -1,5 +1,10 @@
 package com.zhy_9.stoexpress.model;
-
+/**
+ * 扫描数据实体类
+ * 
+ * @author ZHY_9
+ *
+ */
 public class ScanRecord {
 
 	private String date;// 扫描日期（年月日）

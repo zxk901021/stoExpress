@@ -1,14 +1,9 @@
 package com.zhy_9.stoexpress;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.Toast;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import com.zhy_9.stoexpress.adapter.DeliveryAdapter;
 import com.zhy_9.stoexpress.model.ConstansValues;
@@ -20,10 +15,15 @@ import com.zhy_9.stoexpress.util.SharedPreferencesData;
 import com.zhy_9.stoexpress.view.DrawableCenterTextView;
 import com.zhy_9.stoexpress.view.TitleView;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 public class DeliveryActivity extends BaseActivity implements OnClickListener {
 

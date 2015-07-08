@@ -1,15 +1,19 @@
 package com.zhy_9.stoexpress.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
+import com.zhy_9.stoexpress.model.StoInfo;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import android.util.Log;
+import android.widget.Toast;
 
 public class CommonUtil {
 
@@ -69,6 +73,27 @@ public class CommonUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void showToast(Context context, String hintStr) {
+		Toast.makeText(context, hintStr, Toast.LENGTH_SHORT).show();
+	}
+
+	public static String setTransferParam(StoInfo info, Context context) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"EnterpriseID\":\"TJSTO\",")
+				.append("\"StationID\"£º" + "\"" + info.getBranchNumber()
+						+ "\",")
+				.append("\"PDAID\":" + "\"" + getImei(context) + "\",")
+				.append("\"Phone\":" + "\"" + info.getCourierPhone() + "\",")
+				.append("\"EmpNo\":" + "\"" + info.getStaffNumber() + "\",")
+				.append("\"Password\":" + "\"" + info.getPassword() + "\",")
+				.append("\"Version\":\"V1.0\",")
+				.append("\"DefaultLogic\":false,").append("\"Compress\":true,")
+				.append("\"FileType\":0}");
+		String transfer = builder.toString();
+		Log.e("transfer", transfer);
+		return AESEncrypt.encrypt(transfer);
 	}
 
 }

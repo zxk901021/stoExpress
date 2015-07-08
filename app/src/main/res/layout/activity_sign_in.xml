@@ -3,52 +3,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.zhy_9.stoexpress.view.TitleView 
+    <com.zhy_9.stoexpress.view.TitleView
         android:id="@+id/sign_in_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
+        android:layout_height="wrap_content" >
     </com.zhy_9.stoexpress.view.TitleView>
-    
-    <EditText 
+
+    <EditText
         android:id="@+id/sign_in_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginTop="25dp"
         android:layout_below="@+id/sign_in_title"
+        android:layout_marginTop="25dp"
+        android:background="@color/white"
         android:drawableLeft="@drawable/sign_in_mobile"
-        android:padding="10dp"
-        android:inputType="phone"
-        android:hint="@string/phone_hint"
         android:drawablePadding="10dp"
-        android:textCursorDrawable="@null"/>
-    
-    <EditText 
+        android:hint="@string/phone_hint"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textCursorDrawable="@null" />
+
+    <EditText
         android:id="@+id/sign_in_staff_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginTop="25dp"
         android:layout_below="@+id/sign_in_phone"
-        android:drawableLeft="@drawable/sign_in_mobile"
-        android:padding="10dp"
-        android:inputType="phone"
-        android:hint="@string/phone_hint"
+        android:layout_marginTop="25dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/sign_in_verify"
         android:drawablePadding="10dp"
-        android:textCursorDrawable="@null"/>
-    <EditText 
+        android:hint="@string/staff_number"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textCursorDrawable="@null" />
+
+    <EditText
+        android:id="@+id/branch_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_below="@+id/sign_in_staff_number"
         android:layout_marginTop="25dp"
-        android:layout_below="@+id/sign_in_phone"
-        android:drawableLeft="@drawable/sign_in_mobile"
-        android:padding="10dp"
-        android:inputType="phone"
-        android:hint="@string/phone_hint"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/sign_in_verify"
         android:drawablePadding="10dp"
-        android:textCursorDrawable="@null"/>
-    
+        android:hint="@string/branch_number"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textCursorDrawable="@null" />
+
+    <EditText
+        android:id="@+id/password_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/branch_number"
+        android:layout_marginTop="25dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/sign_in_pwd"
+        android:drawablePadding="10dp"
+        android:hint="@string/password_set"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textCursorDrawable="@null" />
+
+    <EditText
+        android:id="@+id/password_ensure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password_set"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/sign_in_pwd"
+        android:drawablePadding="10dp"
+        android:hint="@string/password_ensure"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:textCursorDrawable="@null" />
+
+    <Button
+        android:id="@+id/sign_in_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password_ensure"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_corner"
+        android:text="@string/next"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

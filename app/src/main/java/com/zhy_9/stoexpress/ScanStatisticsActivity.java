@@ -2,12 +2,8 @@ package com.zhy_9.stoexpress;
 
 import java.util.List;
 
-import com.zhy_9.stoexpress.IndicatorFragmentActivity.TabInfo;
-import com.zhy_9.stoexpress.fragment.DeliveryListFragment;
 import com.zhy_9.stoexpress.fragment.DeliveryStatisticsFragment;
-import com.zhy_9.stoexpress.fragment.ProblemListFragment;
 import com.zhy_9.stoexpress.fragment.ProblemStatisticsFragment;
-import com.zhy_9.stoexpress.fragment.SignForListFragment;
 import com.zhy_9.stoexpress.fragment.SignForStatisticsFragment;
 
 import android.os.Bundle;

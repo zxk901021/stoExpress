@@ -1,5 +1,9 @@
 package com.zhy_9.stoexpress.model;
-
+/**
+ * 问题类型实体类
+ * @author ZHY_9
+ *
+ */
 public class ProblemType {
 
 	private String problemNo;

@@ -15,13 +15,16 @@ public class StoExpressDBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// db.execSQL("create table if not exists sto_info " +
-		// "(_id integer primary key autoincrement, " +
-		// "courier_id text, " +
-		// "courier_name text, " +
-		// "courier_phone text, " +
-		// "equip_id text, " +
-		// "company_name text) ");
+		 db.execSQL("create table if not exists sto_info " +
+		 "(_id integer primary key autoincrement, " +
+		 "employee_no text, " +
+		 "employee text, " +
+		 "belong_site text, " +
+		 "area_code text, " +
+		 "password text," +
+		 "last_update text, " +
+		 "operflag text, " +
+		 "belong_post text) ");
 		db.execSQL("create table if not exists scan_record "
 				+ "(_id integer primary key autoincrement, "
 				+ "order_number text, " + "scan_status text, "
@@ -33,11 +36,12 @@ public class StoExpressDBHelper extends SQLiteOpenHelper {
 				+ "problem_no VARCHAR, " + "problem_type VARCHAR, "
 				+ "type VARCHAR, " + "operflag VARCHAR, "
 				+ "last_update VARCHAR, " + "UNIQUE(problem_no))");
+		
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// db.execSQL("ALTER TABLE sto_info ADD COLUMN other STRING");
+		db.execSQL("ALTER TABLE sto_info ADD COLUMN other STRING");
 		db.execSQL("ALTER TABLE scan_record ADD COLUMN other STRING");
 		db.execSQL("ALTER TABLE problem_type ADD COLUMN other STRING");
 	}

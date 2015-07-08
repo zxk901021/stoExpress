@@ -103,7 +103,7 @@ public class WCFClient {
 			result = "";
 		}
 
-		Log.e("temp", result);
+		Log.e("temp  upload", result);
 		return result;
 	}
 

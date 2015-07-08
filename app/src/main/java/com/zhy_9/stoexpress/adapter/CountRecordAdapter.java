@@ -1,5 +1,10 @@
 package com.zhy_9.stoexpress.adapter;
 
+import java.util.List;
+
+import com.zhy_9.stoexpress.R;
+import com.zhy_9.stoexpress.model.CountRecords;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,18 +14,16 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.zhy_9.stoexpress.R;
-import com.zhy_9.stoexpress.model.Record;
-
-import java.util.List;
-
-public class ScanRecordAdapter extends BaseAdapter {
+public class CountRecordAdapter extends BaseAdapter {
 
 	Context context;
 	LayoutInflater inflater;
-	List<Record> data;
-
-	public ScanRecordAdapter(Context context, List<Record> data) {
+	List<CountRecords> data;
+	
+	
+	
+	public CountRecordAdapter(Context context, List<CountRecords> data) {
+		super();
 		this.context = context;
 		this.data = data;
 		inflater = LayoutInflater.from(context);
@@ -43,26 +46,29 @@ public class ScanRecordAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ScanRecordHolder holder;
+		ViewHolder holder = null;
 		if (convertView == null) {
+			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.list_expand_list, null);
-			holder = new ScanRecordHolder();
-			holder.textView = (TextView) convertView
+			holder.year = (TextView) convertView
 					.findViewById(R.id.top_text);
 			holder.listView = (ListView) convertView
 					.findViewById(R.id.second_list);
 			convertView.setTag(holder);
 		} else {
-			holder = (ScanRecordHolder) convertView.getTag();
+			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.textView.setText(data.get(position).getDate());
-		holder.listView.setAdapter(new SecondListAdapter(data.get(position)
-				.getInfo(), context));
+		holder.year.setText(data.get(position).getYear());
+		holder.listView.setAdapter(new MonthCountAdapter(context, data.get(position).getList()));
 		setListViewHeightBasedOnChildren(holder.listView);
-
+		
 		return convertView;
 	}
 
+	class ViewHolder{
+		TextView year;
+		ListView listView;
+	}
 	public void setListViewHeightBasedOnChildren(ListView view) {
 		ListAdapter adapter = view.getAdapter();
 		if (adapter == null) {
@@ -78,11 +84,6 @@ public class ScanRecordAdapter extends BaseAdapter {
 		params.height = totalHeight
 				+ (view.getDividerHeight() * (adapter.getCount() - 1));
 		view.setLayoutParams(params);
-	}
-
-	class ScanRecordHolder {
-		TextView textView;
-		ListView listView;
 	}
 
 }

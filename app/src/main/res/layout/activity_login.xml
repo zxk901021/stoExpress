@@ -80,5 +80,25 @@
         android:text="@string/login"
         android:textSize="18sp"
         android:layout_below="@+id/login_password"/>
+    <TextView 
+        android:id="@+id/user_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:text="@string/sign_in"
+        android:layout_below="@+id/login_ensure"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"/>
+    
+    <TextView 
+        android:id="@+id/reset_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:text="@string/reset_password"
+        android:layout_below="@+id/login_ensure"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"/>
 
 </RelativeLayout>
